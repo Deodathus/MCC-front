@@ -2,7 +2,7 @@
 import React from "react";
 
 import Header from "./Header";
-import Content from "./Content";
+import IndexContent from "./IndexContent";
 import Footer from "./Footer";
 
 export default function IndexLayout() {
@@ -15,7 +15,7 @@ export default function IndexLayout() {
     return (
         <>
             <Header />
-            <Content />
+            <IndexContent />
             <Footer year={data.general.year} />
         </>
     );

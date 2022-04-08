@@ -1,6 +1,7 @@
 import {Center, Container} from "@chakra-ui/react";
+import {Link} from "react-router-dom";
 
-export default function Content() {
+export default function IndexContent() {
     const contentCss = {
         minHeight: 'calc(100vh - 80px)',
         width: '100%'
@@ -14,7 +15,7 @@ export default function Content() {
         <>
             <Container style={contentCss}>
                 <Center style={padding}>
-                    Calculate your craft!
+                    <Link to='/item'> Calculate your craft!</Link>
                 </Center>
             </Container>
         </>

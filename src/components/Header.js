@@ -1,6 +1,7 @@
 import {Box, Container, Divider, Heading, SimpleGrid} from "@chakra-ui/react";
 import SearchInput from "./SearchInput";
 import {Component} from "react";
+import {Link} from "react-router-dom";
 
 export default class Header extends Component {
 
@@ -16,7 +17,7 @@ export default class Header extends Component {
                     <SimpleGrid columns={{sm: 1, md: 2, lg: 2}} m={15}>
                         <Box>
                             <Heading as='h3' size='lg' style={titleCss}>
-                                Minecraft Craft Calculator
+                                <Link to='/'>Minecraft Craft Calculator</Link>
                             </Heading>
                         </Box>
                         <Box>
