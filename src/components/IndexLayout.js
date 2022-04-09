@@ -1,9 +1,11 @@
 
 import React from "react";
 
-import Header from "./Header";
-import IndexContent from "./IndexContent";
 import Footer from "./Footer";
+import {Outlet} from "react-router";
+import Header from "./Header";
+import {Container} from "@chakra-ui/react";
+import NavLinks from "./NavLinks";
 
 export default function IndexLayout(props) {
     const data = {
@@ -15,7 +17,10 @@ export default function IndexLayout(props) {
     return (
         <>
             <Header />
-            <IndexContent contentCss={props.contentCss} />
+            <NavLinks />
+            <Container style={props.contentCss}>
+                <Outlet />
+            </Container>
             <Footer year={data.general.year} />
         </>
     );
