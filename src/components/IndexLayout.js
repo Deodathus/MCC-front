@@ -5,7 +5,7 @@ import Header from "./Header";
 import IndexContent from "./IndexContent";
 import Footer from "./Footer";
 
-export default function IndexLayout() {
+export default function IndexLayout(props) {
     const data = {
         general: {
             year: 2022
@@ -15,7 +15,7 @@ export default function IndexLayout() {
     return (
         <>
             <Header />
-            <IndexContent />
+            <IndexContent contentCss={props.contentCss} />
             <Footer year={data.general.year} />
         </>
     );

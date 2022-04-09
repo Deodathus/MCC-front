@@ -7,16 +7,17 @@ import {BrowserRouter, Route} from "react-router-dom";
 import {Routes} from "react-router";
 
 function App() {
+    const contentCss = {
+        minHeight: 'calc(100vh - 80px)',
+        width: '100%'
+    };
+
     return (
       <>
         <BrowserRouter>
             <Routes>
-                <Route path='/'>
-                    <IndexLayout />
-                </Route>
-                <Route path='/item'>
-                    <ItemLayout />
-                </Route>
+                <Route path='/' element={<IndexLayout contentCss={contentCss}/>} />
+                <Route path='/item' element={<ItemLayout contentCss={contentCss} />} />
             </Routes>
         </BrowserRouter>
       </>
