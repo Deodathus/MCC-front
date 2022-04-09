@@ -2,6 +2,6 @@
 import axios from "axios";
 
 export default function () {
-    return axios.get('http://localhost:8080/api/minecraft/item')
+    return axios.get('http://lil-develo.com/api/minecraft/item')
     .then(response => response.data);
 }
