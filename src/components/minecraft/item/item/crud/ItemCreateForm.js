@@ -22,9 +22,7 @@ export default class ItemCreateForm extends Component {
     testFormSubmit(e) {
         e.preventDefault();
 
-        console.log(e.target.key.value);
-        console.log(e.target.subKey.value);
-        console.log(e.target.name.value);
+        CreateItem(e.target.key.value, e.target.subKey.value, e.target.name.value);
     }
 
     render() {
