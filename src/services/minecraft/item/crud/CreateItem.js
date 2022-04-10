@@ -6,7 +6,5 @@ export default function(key, subKey, name) {
         subKey: parseInt(subKey),
         name
     })
-    .then(response => {
-        console.log(response);
-    });
+    .then();
 }
