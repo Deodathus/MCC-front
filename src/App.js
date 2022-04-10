@@ -1,13 +1,14 @@
 import './App.css';
 
-import IndexLayout from "./components/IndexLayout";
+import React from "react";
+import Router from "./Router";
 
 function App() {
-  return (
+    return (
       <>
-        <IndexLayout />
+          <Router />
       </>
-  );
+    );
 }
 
 export default App;
