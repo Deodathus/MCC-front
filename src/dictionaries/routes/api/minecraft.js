@@ -1,11 +1,9 @@
-require('dotenv').config();
-
 import Environment from "../../config/Environment";
 
 export default function() {
     let host;
 
-    switch (process.env.APP_ENV) {
+    switch (process.env.REACT_APP_ENV) {
         case Environment.PROD.value:
             host = 'http://lil-develo.com/';
 
