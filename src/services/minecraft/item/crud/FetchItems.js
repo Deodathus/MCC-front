@@ -1,7 +1,9 @@
 
 import axios from "axios";
+import minecraft from "../../../../dictionaries/routes/api/minecraft";
 
-export default function () {
-    return axios.get('http://lil-develo.com/api/minecraft/item')
-    .then(response => response.data);
+export default function FetchItems() {
+    let api = minecraft();
+
+    return axios.get(api.item.fetch);
 }

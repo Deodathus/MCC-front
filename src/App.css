@@ -9,6 +9,13 @@
     font-weight: bold;
 }
 
-.chakra-container {
+.chakra-container,
+.margin-top {
     margin-top: 15px;
+}
+
+.content {
+    min-height: calc(100vh - 180px);
+    width: 100% !important;
+    max-width: 100% !important;
 }

@@ -1,13 +1,12 @@
 
+import Header from "../../Header";
+import NavLinks from "../../NavLinks";
+import {Container} from "@chakra-ui/react";
+import {Outlet} from "react-router";
+import Footer from "../../Footer";
 import React from "react";
 
-import Footer from "./Footer";
-import {Outlet} from "react-router";
-import Header from "./Header";
-import {Container} from "@chakra-ui/react";
-import NavLinks from "./NavLinks";
-
-export default function IndexLayout() {
+export default function ItemLayout() {
     const data = {
         general: {
             year: 2022

@@ -1,5 +1,5 @@
 # pull the official base image
-FROM node:alpine
+FROM node:lts
 
 # set working direction
 WORKDIR /app
@@ -9,7 +9,7 @@ ENV PATH node_modules/.bin:$PATH
 
 # install application dependencies
 COPY package.json /app
-RUN npm install
+RUN npm install --legacy-peer-deps
 
 # add app
 COPY . ./app

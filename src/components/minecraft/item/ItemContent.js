@@ -1,40 +1,36 @@
 
-import {Component} from "react";
 import {Button, Container, Flex, Spacer} from "@chakra-ui/react";
 import {Link} from "react-router-dom";
 import {Outlet} from "react-router";
 
-import FetchItems from "../../../services/minecraft/item/crud/FetchItems";
+import Table from "../../utils/data/Table";
+import { useDispatch } from "react-redux";
+import CrudItemReducer from "../../../reducers/item/CrudItemReducer";
+import {useEffect} from "react";
 
-export default class ItemContent extends Component {
-    constructor(props) {
-        super(props);
+export default function ItemContent() {
+    const dispatch = useDispatch();
 
-        this.contentCss = this.props.contentCss;
-        this.state = {
-            items: []
-        };
-    }
+    useEffect(() => {
+        dispatch(CrudItemReducer.fetchAll)
+    });
 
-    async componentDidMount() {
-        this.state.items = await FetchItems();
-    }
+    return (
+        <>
+            <Container className='content'>
+                <Flex>
+                    <Spacer />
+                    <Link to='/items/create'>
+                        <Button colorScheme='teal' size='lg'>
+                            Add item
+                        </Button>
+                    </Link>
+                </Flex>
 
-    render() {
-        return (
-            <>
-                <Container style={this.contentCss}>
-                    <Flex>
-                        <Spacer />
-                        <Link to='/items/create'>
-                            <Button colorScheme='teal' size='lg'>
-                                Add item
-                            </Button>
-                        </Link>
-                    </Flex>
-                    <Outlet />
-                </Container>
-            </>
-        );
-    }
+                <Table elementKey='items'/>
+
+                <Outlet />
+            </Container>
+        </>
+    );
 }

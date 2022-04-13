@@ -1,4 +1,4 @@
-import {Component} from "react";
+import { useState } from "react";
 import {
     Box, Button,
     Container,
@@ -10,69 +10,68 @@ import {
     SimpleGrid
 } from "@chakra-ui/react";
 
-import CreateItem from '../../../../../services/minecraft/item/crud/CreateItem';
+import {useDispatch} from "react-redux";
+import ItemCrudActionCreator from "../../../../../actions/item/ItemCrudActionCreator";
 
-export default class ItemCreateForm extends Component {
-    constructor(props) {
-        super(props);
+export default function ItemCreateForm() {
+    const dispatch = useDispatch();
 
-        this.testFormSubmit = this.testFormSubmit.bind(this);
-    }
+    const [key, setKey] = useState();
+    const [subKey, setSubKey] = useState();
+    const [name, setName] = useState('');
 
-    testFormSubmit(e) {
+    function createItem(e) {
         e.preventDefault();
 
-        CreateItem(e.target.key.value, e.target.subKey.value, e.target.name.value);
+        dispatch(ItemCrudActionCreator.storeItem(key, subKey, name));
     }
 
-    render() {
-        return (
-            <>
-                <Container style={this.props.contentCss}>
-                    <form action="/" onSubmit={this.testFormSubmit}>
-                        <SimpleGrid columns={{sm: 2, md: 4, lg: 6}} spacing={10}>
+    return (
+        <>
+            <Container className='content'>
+                <form action="/" onSubmit={createItem}>
+                    <SimpleGrid columns={{sm: 2, md: 4, lg: 6}} spacing={10}>
 
-                            <Box>
-                                <FormControl>
-                                    <FormLabel htmlFor='key'>
-                                        <span className='label'>Item's key</span>
-                                    </FormLabel>
-                                    <NumberInput id='key' name='key'>
-                                        <NumberInputField />
-                                    </NumberInput>
-                                </FormControl>
-                            </Box>
+                        <Box>
+                            <FormControl>
+                                <FormLabel htmlFor='key'>
+                                    <span className='label'>Item's key</span>
+                                </FormLabel>
+                                <NumberInput id='key' name='key' onChange={setKey}>
+                                    <NumberInputField />
+                                </NumberInput>
+                            </FormControl>
+                        </Box>
 
-                            <Box>
-                                <FormControl>
-                                    <FormLabel htmlFor='subKey'>
-                                        <span className='label'>Item's sub key</span>
-                                    </FormLabel>
-                                    <NumberInput id='subKey' name='subKey'>
-                                        <NumberInputField />
-                                    </NumberInput>
-                                </FormControl>
-                            </Box>
+                        <Box>
+                            <FormControl>
+                                <FormLabel htmlFor='subKey'>
+                                    <span className='label'>Item's sub key</span>
+                                </FormLabel>
+                                <NumberInput id='subKey' name='subKey' onChange={setSubKey}>
+                                    <NumberInputField />
+                                </NumberInput>
+                            </FormControl>
+                        </Box>
 
-                        </SimpleGrid>
-                        <SimpleGrid columns={{sm: 2, md: 4, lg: 6}} spacing={10}>
-                            <Box>
-                                <FormControl>
-                                    <FormLabel htmlFor='name'>
-                                        <span className="label">Item's name</span>
-                                    </FormLabel>
-                                    <Input id='name' name='name' />
-                                </FormControl>
-                            </Box>
-                            <Box style={{marginTop: 25}}>
-                                <Button colorScheme='teal' size='lg' type='submit'>
-                                    Create
-                                </Button>
-                            </Box>
-                        </SimpleGrid>
-                    </form>
-                </Container>
-            </>
-        );
-    }
+                    </SimpleGrid>
+                    <SimpleGrid columns={{sm: 2, md: 4, lg: 6}} spacing={10}>
+                        <Box>
+                            <FormControl>
+                                <FormLabel htmlFor='name'>
+                                    <span className="label">Item's name</span>
+                                </FormLabel>
+                                <Input id='name' name='name' onChange={(e) => setName(e.target.value)} />
+                            </FormControl>
+                        </Box>
+                        <Box style={{marginTop: 25}}>
+                            <Button colorScheme='teal' size='lg' type='submit'>
+                                Create
+                            </Button>
+                        </Box>
+                    </SimpleGrid>
+                </form>
+            </Container>
+        </>
+    );
 }

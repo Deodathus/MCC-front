@@ -8,7 +8,7 @@ export default function NavLinks() {
                 <SimpleGrid columns={{sm: 4, md: 6, lg: 12}} m={15}>
                     <Box>
                         <Heading as='h5' size='sm'>
-                            <Link className='heading' to='items'>Items</Link>
+                            <Link className='heading' to='/items'>Items</Link>
                         </Heading>
                     </Box>
                 </SimpleGrid>
