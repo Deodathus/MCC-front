@@ -2,11 +2,10 @@
 import {Button, Container, Flex, Spacer} from "@chakra-ui/react";
 import {Link} from "react-router-dom";
 import {Outlet} from "react-router";
-
-import Table from "../../utils/data/Table";
 import { useDispatch } from "react-redux";
 import CrudItemReducer from "../../../reducers/item/CrudItemReducer";
 import {useEffect} from "react";
+import ItemList from "./ItemList";
 
 export default function ItemContent() {
     const dispatch = useDispatch();
@@ -21,13 +20,13 @@ export default function ItemContent() {
                 <Flex>
                     <Spacer />
                     <Link to='/items/create'>
-                        <Button colorScheme='teal' size='lg'>
+                        <Button colorScheme='teal' size='sm'>
                             Add item
                         </Button>
                     </Link>
                 </Flex>
 
-                <Table elementKey='items'/>
+                <ItemList />
 
                 <Outlet />
             </Container>
