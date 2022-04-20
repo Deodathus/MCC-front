@@ -36,18 +36,15 @@ export default function RecipeCreateForm() {
                             </FormControl>
                         </Box>
 
-                        <Box>
-                            <FormControl>
-                                <FormLabel htmlFor='key'>
-                                    <span className='label'>Recipe ingredients</span>
-                                </FormLabel>
-                                <ItemSelectComponent />
-                            </FormControl>
+                        <Box style={{marginTop: 25}}>
+                            <Button colorScheme='teal' size='md' type='submit'>
+                                Create
+                            </Button>
                         </Box>
 
                     </SimpleGrid>
 
-                    <SimpleGrid columns={{sm: 2, md: 4, lg: 6}} spacing={10}>
+                    <SimpleGrid columns={{sm: 2, md: 2, lg: 2}} spacing={10}>
 
                         <Box>
                             <FormControl>
@@ -58,10 +55,13 @@ export default function RecipeCreateForm() {
                             </FormControl>
                         </Box>
 
-                        <Box style={{marginTop: 25}}>
-                            <Button colorScheme='teal' size='md' type='submit'>
-                                Create
-                            </Button>
+                        <Box>
+                            <FormControl>
+                                <FormLabel htmlFor='key'>
+                                    <span className='label'>Recipe ingredients</span>
+                                </FormLabel>
+                                <ItemSelectComponent />
+                            </FormControl>
                         </Box>
 
                     </SimpleGrid>

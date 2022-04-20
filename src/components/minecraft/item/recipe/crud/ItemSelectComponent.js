@@ -13,7 +13,7 @@ export default function ItemSelectComponent() {
 
     return (
         <>
-            <AsyncSelect defaultOptions={options} />
+            <AsyncSelect isMulti defaultOptions={options} />
         </>
     );
 }
