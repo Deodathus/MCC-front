@@ -18,6 +18,9 @@ export default function() {
         item: {
             fetch: host + 'api/minecraft/item',
             store: host + 'api/minecraft/item'
+        },
+        recipe: {
+            store: host + 'api/minecraft/recipe'
         }
     };
 }

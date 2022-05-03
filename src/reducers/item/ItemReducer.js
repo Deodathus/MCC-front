@@ -2,7 +2,6 @@ import Types from "../../dictionaries/actions/item/Types";
 import CrudItemReducer from "./CrudItemReducer";
 
 export default function ItemReducer(state = [], action) {
-
     switch (action.type) {
         case Types.ITEM.FETCH.ERROR.type:
             return CrudItemReducer.fetchError(state, action);

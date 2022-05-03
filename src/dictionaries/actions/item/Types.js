@@ -30,6 +30,13 @@ const types = {
                 type: 'ITEM|REMOVE_ACTION'
             }
         }
+    },
+    RECIPE: {
+        STORE: {
+            ONE: {
+                type: 'RECIPE|STORE_ACTION'
+            }
+        }
     }
 };
 
