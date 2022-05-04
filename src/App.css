@@ -19,3 +19,13 @@
     width: 100% !important;
     max-width: 100% !important;
 }
+
+.itemShowContent div {
+    padding-top: 10px;
+}
+
+.itemShowLabel {
+    font-style: italic;
+    font-weight: bold;
+    font-size: 15px;
+}

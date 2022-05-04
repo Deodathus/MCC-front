@@ -14,6 +14,12 @@ const types = {
             ALL: {
                 type: 'ITEM|FETCH_ALL_ACTION'
             },
+            ONE: {
+                type: 'ITEM|FETCH_ONE_ACTION'
+            },
+            ONE_FINISHED: {
+                type: 'ITEM|FETCH_ONE_FINISHED'
+            }
         },
         STORE: {
             ONE: {

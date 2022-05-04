@@ -11,6 +11,8 @@ export default function ItemReducer(state = [], action) {
             return CrudItemReducer.fetchFinished(state, action);
         case Types.ITEM.STORE.ONE.type:
             return CrudItemReducer.storeItem(state, action);
+        case Types.ITEM.FETCH.ONE_FINISHED.type:
+            return CrudItemReducer.fetchOneFinished(state, action);
         default:
             break;
     }
