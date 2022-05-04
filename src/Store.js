@@ -9,7 +9,8 @@ import Statuses from "./dictionaries/actions/item/Statuses";
 let preloadedState = {
     items: {
         elements: {},
-        status: Statuses.loading
+        status: Statuses.loading,
+        recipes: {}
     },
     forms: {
         createItem: {

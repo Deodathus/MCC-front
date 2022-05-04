@@ -20,7 +20,12 @@
     max-width: 100% !important;
 }
 
-.itemShowContent div {
+.itemShowContent div,
+.itemRecipes,
+.itemRecipe,
+.recipeIngredient,
+.recipeResult,
+.pdt10 {
     padding-top: 10px;
 }
 

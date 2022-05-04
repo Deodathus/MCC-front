@@ -19,6 +19,12 @@ const types = {
             },
             ONE_FINISHED: {
                 type: 'ITEM|FETCH_ONE_FINISHED'
+            },
+            RECIPES_FINISHED: {
+                type: 'ITEM|FETCH_RECIPES_FINISHED'
+            },
+            RECIPES_ERROR: {
+                type: 'ITEM|FETCH_RECIPES_ERROR'
             }
         },
         STORE: {

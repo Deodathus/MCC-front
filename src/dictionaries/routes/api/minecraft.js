@@ -11,6 +11,7 @@ export default function() {
         default:
         case Environment.DEV.value:
             host = 'http://127.0.0.1:8080/';
+
             break;
     }
 
@@ -18,6 +19,7 @@ export default function() {
         item: {
             fetch: host + 'api/minecraft/item',
             fetchOne: host + 'api/minecraft/item/{id}',
+            fetchRecipes: host + 'api/minecraft/item/{id}/recipes',
             store: host + 'api/minecraft/item'
         },
         recipe: {
