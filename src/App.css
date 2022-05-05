@@ -34,3 +34,7 @@
     font-weight: bold;
     font-size: 15px;
 }
+
+.itemRecipe {
+    cursor: pointer;
+}

@@ -1,11 +1,11 @@
 import {Box, Heading, SimpleGrid} from "@chakra-ui/react";
-import ItemRecipeComponent from "./ItemRecipeComponent";
+import ItemRecipeWithModalComponent from "./ItemRecipeWithModalComponent";
 
 export default function ItemAsResultListComponent(props) {
     const recipes = props.recipes;
 
     let asInResultsRecipes = recipes.map(recipe => {
-        return <ItemRecipeComponent key={recipe.id} recipe={recipe} />
+        return <ItemRecipeWithModalComponent key={recipe.id} recipe={recipe} />
     });
 
     return (

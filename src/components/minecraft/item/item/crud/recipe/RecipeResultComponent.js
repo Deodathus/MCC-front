@@ -1,4 +1,5 @@
 import {Box, Grid, GridItem, Skeleton} from "@chakra-ui/react";
+import AmountInStacksComponent from "./AmountInStacksComponent";
 
 export default function RecipeResultComponent(props) {
     const result = props.result;
@@ -14,7 +15,7 @@ export default function RecipeResultComponent(props) {
                         <span className='itemShowLabel'>Name: </span>{result.itemName}
                     </Box>
                     <Box>
-                        <span className='itemShowLabel'>Amount: </span>{result.amount}
+                        <span className='itemShowLabel'>Amount: </span>{result.amount} <AmountInStacksComponent amount={result.amount} />
                     </Box>
                 </GridItem>
             </Grid>

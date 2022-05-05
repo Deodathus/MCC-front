@@ -24,6 +24,9 @@ export default function() {
         },
         recipe: {
             store: host + 'api/minecraft/recipe'
+        },
+        calculator: {
+            calculate: host + 'api/minecraft/calculator/recipe/{id}'
         }
     };
 }
