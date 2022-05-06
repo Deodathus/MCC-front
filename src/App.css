@@ -38,3 +38,8 @@
 .itemRecipe {
     cursor: pointer;
 }
+
+.developmentMapList>*,
+.patchNotesList>* {
+    margin-top: 10px;
+}
