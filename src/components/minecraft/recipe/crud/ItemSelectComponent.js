@@ -2,7 +2,7 @@
 import AsyncSelect from "react-select/async";
 import { useSelector } from "react-redux";
 import {useState} from "react";
-import Statuses from "../../../../../dictionaries/actions/item/Statuses";
+import Statuses from "../../../../dictionaries/actions/item/Statuses";
 
 export default function ItemSelectComponent(props) {
     const items = useSelector(state => state.items.elements);

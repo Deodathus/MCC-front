@@ -2,9 +2,9 @@ import {Box, Skeleton} from "@chakra-ui/react";
 import ItemSkeletonComponent from "./ItemSkeletonComponent";
 import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import ItemCrudActionCreator from "../../../../../actions/item/ItemCrudActionCreator";
-import CrudItemReducer from "../../../../../reducers/item/CrudItemReducer";
-import Statuses from "../../../../../dictionaries/actions/item/Statuses";
+import ItemCrudActionCreator from "../../../../actions/item/ItemCrudActionCreator";
+import CrudItemReducer from "../../../../reducers/item/CrudItemReducer";
+import Statuses from "../../../../dictionaries/actions/item/Statuses";
 
 export default function ItemComponent(props) {
     const dispatch = useDispatch();

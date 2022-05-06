@@ -1,11 +1,11 @@
 import {useRoutes} from "react-router";
-import ItemCreateForm from "./components/minecraft/item/item/crud/ItemCreateForm";
+import ItemCreateForm from "./components/minecraft/item/crud/ItemCreateForm";
 import ItemContent from "./components/minecraft/item/ItemContent";
 import ItemLayout from "./components/minecraft/item/ItemLayout";
 import IndexLayout from "./components/IndexLayout";
-import ItemShowContent from "./components/minecraft/item/item/crud/ItemShowContent";
-import RecipeContent from "./components/minecraft/item/RecipeContent";
-import RecipeCreateForm from "./components/minecraft/item/recipe/crud/RecipeCreateForm";
+import ItemShowContent from "./components/minecraft/item/crud/ItemShowContent";
+import RecipeContent from "./components/minecraft/recipe/RecipeContent";
+import RecipeCreateForm from "./components/minecraft/recipe/crud/RecipeCreateForm";
 
 export default function Router() {
     return useRoutes([

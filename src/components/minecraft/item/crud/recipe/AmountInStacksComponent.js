@@ -1,6 +1,6 @@
 import {Tag} from "@chakra-ui/react";
 import AmountToAmountInStacksTransformer
-    from "../../../../../../services/minecraft/item/transformer/AmountToAmountInStacksTransformer";
+    from "../../../../../services/minecraft/item/transformer/AmountToAmountInStacksTransformer";
 
 export default function AmountInStacksComponent(props) {
     const amount = props.amount;

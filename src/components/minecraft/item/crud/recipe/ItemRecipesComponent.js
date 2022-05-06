@@ -2,7 +2,7 @@
 import ItemAsIngredientListComponent from "./ingredient/ItemAsIngredientListComponent";
 import ItemAsResultListComponent from "./recipeResult/ItemAsResultListComponent";
 import {useDispatch, useSelector} from "react-redux";
-import ItemRecipeReducer from "../../../../../../reducers/item/ItemRecipeReducer";
+import ItemRecipeReducer from "../../../../../reducers/item/ItemRecipeReducer";
 import ItemRecipesSkeletonComponent from "./ItemRecipesSkeletonComponent";
 
 export default function ItemRecipesComponent(props) {

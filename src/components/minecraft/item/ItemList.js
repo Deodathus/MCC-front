@@ -1,9 +1,9 @@
 import {SimpleGrid} from "@chakra-ui/react";
 import {useSelector} from "react-redux";
-import ItemComponent from "./item/ItemComponent";
+import ItemComponent from "./ItemComponent";
 import {useState} from "react";
 import Statuses from "../../../dictionaries/actions/item/Statuses";
-import ItemSkeletonComponent from "./item/ItemSkeletonComponent";
+import ItemSkeletonComponent from "./ItemSkeletonComponent";
 
 export default function ItemList() {
     const items = useSelector(state => state.items.elements);
