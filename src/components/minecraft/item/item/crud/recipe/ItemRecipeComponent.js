@@ -1,6 +1,6 @@
 import {Box, Divider, SimpleGrid} from "@chakra-ui/react";
-import RecipeIngredientComponent from "./RecipeIngredientComponent";
-import RecipeResultComponent from "./RecipeResultComponent";
+import RecipeIngredientComponent from "./ingredient/RecipeIngredientComponent";
+import RecipeResultComponent from "./recipeResult/RecipeResultComponent";
 
 export default function ItemRecipeComponent(props) {
     const recipe = props.recipe;

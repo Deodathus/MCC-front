@@ -1,6 +1,6 @@
 
-import ItemAsIngredientListComponent from "./ItemAsIngredientListComponent";
-import ItemAsResultListComponent from "./ItemAsResultListComponent";
+import ItemAsIngredientListComponent from "./ingredient/ItemAsIngredientListComponent";
+import ItemAsResultListComponent from "./recipeResult/ItemAsResultListComponent";
 import {useDispatch, useSelector} from "react-redux";
 import ItemRecipeReducer from "../../../../../../reducers/item/ItemRecipeReducer";
 import ItemRecipesSkeletonComponent from "./ItemRecipesSkeletonComponent";
