@@ -3,6 +3,9 @@ import ItemCreateForm from "./components/minecraft/item/item/crud/ItemCreateForm
 import ItemContent from "./components/minecraft/item/ItemContent";
 import ItemLayout from "./components/minecraft/item/ItemLayout";
 import IndexLayout from "./components/IndexLayout";
+import ItemShowContent from "./components/minecraft/item/item/crud/ItemShowContent";
+import RecipeContent from "./components/minecraft/item/RecipeContent";
+import RecipeCreateForm from "./components/minecraft/item/recipe/crud/RecipeCreateForm";
 
 export default function Router() {
     return useRoutes([
@@ -15,7 +18,16 @@ export default function Router() {
             element: <ItemLayout />,
             children: [
                 { path: '', element: <ItemContent /> },
-                { path: 'create', element: <ItemCreateForm /> }
+                { path: 'create', element: <ItemCreateForm /> },
+                { path: ':itemId', element: <ItemShowContent /> }
+            ]
+        },
+        {
+            path: '/recipes',
+            element: <ItemLayout />,
+            children: [
+                { path: '', element: <RecipeContent /> },
+                { path: 'create', element: <RecipeCreateForm /> }
             ]
         }
     ]);

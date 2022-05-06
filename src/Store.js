@@ -4,11 +4,13 @@ import thunkMiddleware from 'redux-thunk';
 import { composeWithDevTools } from "redux-devtools-extension";
 
 import RootReducer from "./reducers/RootReducer";
+import Statuses from "./dictionaries/actions/item/Statuses";
 
-/*let preloadedState = {
+let preloadedState = {
     items: {
         elements: {},
-        status: Statuses.loading
+        status: Statuses.loading,
+        recipes: {}
     },
     forms: {
         createItem: {
@@ -17,12 +19,12 @@ import RootReducer from "./reducers/RootReducer";
             name: ''
         }
     }
-};*/
+};
 
 const composedEnhancer = composeWithDevTools(
     applyMiddleware(thunkMiddleware)
 );
 
-const store = createStore(RootReducer, composedEnhancer);
+const store = createStore(RootReducer, preloadedState, composedEnhancer);
 
 export default store;

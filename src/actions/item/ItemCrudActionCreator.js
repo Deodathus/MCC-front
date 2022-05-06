@@ -7,6 +7,15 @@ function fetchAll() {
     };
 }
 
+function fetchOne(id) {
+    return {
+        type: Types.ITEM.FETCH.ONE.type,
+        payload: {
+            id
+        }
+    };
+}
+
 function fetchStarted() {
     return {
         type: Types.ITEM.FETCH.STARTED.type
@@ -26,6 +35,13 @@ function fetchFinished(items) {
         type: Types.ITEM.FETCH.FINISHED.type,
         payload: items
     }
+}
+
+function fetchOneFinished(item) {
+    return {
+        type: Types.ITEM.FETCH.ONE_FINISHED.type,
+        payload: item
+    };
 }
 
 function storeItem(key, subKey, name) {
@@ -62,6 +78,8 @@ function removeItem(itemId) {
 
 export default {
     fetchAll,
+    fetchOne,
+    fetchOneFinished,
     fetchStarted,
     fetchError,
     fetchFinished,

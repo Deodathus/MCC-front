@@ -11,6 +11,11 @@ export default function NavLinks() {
                             <Link className='heading' to='/items'>Items</Link>
                         </Heading>
                     </Box>
+                    <Box>
+                        <Heading as='h5' size='sm'>
+                            <Link className='heading' to='/recipes'>Recipes</Link>
+                        </Heading>
+                    </Box>
                 </SimpleGrid>
             </Container>
 

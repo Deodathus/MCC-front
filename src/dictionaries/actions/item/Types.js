@@ -14,6 +14,18 @@ const types = {
             ALL: {
                 type: 'ITEM|FETCH_ALL_ACTION'
             },
+            ONE: {
+                type: 'ITEM|FETCH_ONE_ACTION'
+            },
+            ONE_FINISHED: {
+                type: 'ITEM|FETCH_ONE_FINISHED'
+            },
+            RECIPES_FINISHED: {
+                type: 'ITEM|FETCH_RECIPES_FINISHED'
+            },
+            RECIPES_ERROR: {
+                type: 'ITEM|FETCH_RECIPES_ERROR'
+            }
         },
         STORE: {
             ONE: {
@@ -28,6 +40,13 @@ const types = {
         REMOVE: {
             ONE: {
                 type: 'ITEM|REMOVE_ACTION'
+            }
+        }
+    },
+    RECIPE: {
+        STORE: {
+            ONE: {
+                type: 'RECIPE|STORE_ACTION'
             }
         }
     }

@@ -65,7 +65,7 @@ export default function ItemCreateForm() {
                             </FormControl>
                         </Box>
                         <Box style={{marginTop: 25}}>
-                            <Button colorScheme='teal' size='lg' type='submit'>
+                            <Button colorScheme='teal' size='md' type='submit'>
                                 Create
                             </Button>
                         </Box>

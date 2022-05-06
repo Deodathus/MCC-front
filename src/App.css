@@ -19,3 +19,22 @@
     width: 100% !important;
     max-width: 100% !important;
 }
+
+.itemShowContent div,
+.itemRecipes,
+.itemRecipe,
+.recipeIngredient,
+.recipeResult,
+.pdt10 {
+    padding-top: 10px;
+}
+
+.itemShowLabel {
+    font-style: italic;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.itemRecipe {
+    cursor: pointer;
+}

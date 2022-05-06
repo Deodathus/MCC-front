@@ -1,10 +1,11 @@
-import {Center, Spinner, Stat, Table, TableContainer, Tbody, Td, Th, Thead, Tr} from "@chakra-ui/react";
+import {Center, Spinner, Table, TableContainer, Tbody, Td, Th, Thead, Tr} from "@chakra-ui/react";
 import {useState} from "react";
 import {useSelector} from "react-redux";
 import Statuses from "../../../dictionaries/actions/item/Statuses";
 
 export default function(props) {
     const elementKey = props.elementKey;
+    const withOptions = props.withOptions;
 
     const [status, setStatus] = useState(Statuses.loading);
 
@@ -83,6 +84,10 @@ export default function(props) {
             </Tr>
         );
     });
+
+    if (withOptions) {
+        keys.push('options');
+    }
 
     tableHeaders = keys.map((key, index) => {
         return <Th key={index}>{key}</Th>
