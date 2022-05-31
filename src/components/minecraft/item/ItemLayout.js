@@ -6,21 +6,17 @@ import {Outlet} from "react-router";
 import Footer from "../../Footer";
 import React from "react";
 
-export default function ItemLayout() {
-    const data = {
-        general: {
-            year: 2022
-        }
-    };
+export default function ItemLayout(props) {
+    const generalData = props.generalData;
 
     return (
         <>
-            <Header />
+            <Header version={generalData.version} />
             <NavLinks />
             <Container className='content'>
                 <Outlet />
             </Container>
-            <Footer year={data.general.year} />
+            <Footer year={generalData.year} />
         </>
     );
 }

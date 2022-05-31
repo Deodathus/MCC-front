@@ -7,6 +7,12 @@ import RootReducer from "./reducers/RootReducer";
 import Statuses from "./dictionaries/actions/item/Statuses";
 
 let preloadedState = {
+    data: {
+        general: {
+            version: 1.1,
+            year: 2022
+        }
+    },
     items: {
         elements: {},
         status: Statuses.loading,

@@ -8,22 +8,18 @@ import {Container} from "@chakra-ui/react";
 import NavLinks from "./NavLinks";
 import MainPageContent from "./MainPageContent";
 
-export default function IndexLayout() {
-    const data = {
-        general: {
-            year: 2022
-        }
-    };
+export default function IndexLayout(props) {
+    const generalData = props.generalData;
 
     return (
         <>
-            <Header />
+            <Header version={generalData.version} />
             <NavLinks />
             <Container className='content'>
                 <MainPageContent />
                 <Outlet />
             </Container>
-            <Footer year={data.general.year} />
+            <Footer year={generalData.year} />
         </>
     );
 }
