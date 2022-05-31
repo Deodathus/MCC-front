@@ -11,6 +11,7 @@ export default function PatchNoteComponent() {
                     <UnorderedList className='patchNotesList'>
                         <ListItem>Basic(CRUD) item, recipe pages <Tag colorScheme='green'>v0.1</Tag></ListItem>
                         <ListItem>Basic(single) recipe calculation <Tag colorScheme='green'>v1</Tag></ListItem>
+                        <ListItem>Tree craft calculator <Tag colorScheme='green'>v1.1</Tag></ListItem>
                     </UnorderedList>
                 </Box>
             </Box>

@@ -44,6 +44,10 @@
     margin-top: 10px;
 }
 
+.versionReleased {
+    text-decoration: line-through;
+}
+
 .subIngredientsList {
     margin-left: 25px;
 }

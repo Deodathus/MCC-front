@@ -9,7 +9,9 @@ export default function DevelopmentMapComponent() {
                 </Heading>
                 <Box>
                     <UnorderedList className='developmentMapList'>
-                        <ListItem>Tree craft calculator <Tag colorScheme='orange'>~v1.1</Tag></ListItem>
+                        <ListItem>
+                            <span className='versionReleased'>Tree craft calculator</span> <Tag colorScheme='orange'><span className='versionReleased'>~v1.1</span></Tag>
+                        </ListItem>
                         <ListItem>Items import from JSON <Tag colorScheme='orange'>~v1.2</Tag></ListItem>
                         <ListItem>Shapeless recipes import from JSON <Tag colorScheme='orange'>~v1.3.0</Tag></ListItem>
                         <ListItem>Shaped recipes import from JSON <Tag colorScheme='orange'>~v1.3.1</Tag></ListItem>
