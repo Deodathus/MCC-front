@@ -14,9 +14,9 @@ import {
 
 import {useEffect, useState} from "react";
 import ItemSelectComponent from "./ItemSelectComponent";
-import CrudItemReducer from "../../../../../reducers/item/CrudItemReducer";
+import CrudItemReducer from "../../../../reducers/item/CrudItemReducer";
 import {useDispatch} from "react-redux";
-import RecipeCrudActionCreator from "../../../../../actions/recipe/RecipeCrudActionCreator";
+import RecipeCrudActionCreator from "../../../../actions/recipe/RecipeCrudActionCreator";
 
 export default function RecipeCreateForm() {
     const [name, setName] = useState('');
@@ -100,7 +100,7 @@ export default function RecipeCreateForm() {
     return (
         <>
             <Container className='content'>
-                <form action="/" onSubmit={createRecipe}>
+                <form action="/home/bohdan/projects/organizer-front/public" onSubmit={createRecipe}>
                     <SimpleGrid columns={{sm: 2, md: 4, lg: 6}} spacing={10}>
 
                         <Box>

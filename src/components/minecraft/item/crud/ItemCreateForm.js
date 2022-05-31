@@ -11,7 +11,7 @@ import {
 } from "@chakra-ui/react";
 
 import {useDispatch} from "react-redux";
-import ItemCrudActionCreator from "../../../../../actions/item/ItemCrudActionCreator";
+import ItemCrudActionCreator from "../../../../actions/item/ItemCrudActionCreator";
 
 export default function ItemCreateForm() {
     const dispatch = useDispatch();
@@ -29,7 +29,7 @@ export default function ItemCreateForm() {
     return (
         <>
             <Container className='content'>
-                <form action="/" onSubmit={createItem}>
+                <form action="/home/bohdan/projects/organizer-front/public" onSubmit={createItem}>
                     <SimpleGrid columns={{sm: 2, md: 4, lg: 6}} spacing={10}>
 
                         <Box>

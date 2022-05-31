@@ -6,11 +6,11 @@ export default function RecipeIngredientComponent(props) {
 
     return (
         <>
-            <Grid templateColumns='repeat(5, 1fr)' className='recipeIngredient'>
+            <Grid templateColumns='repeat(6, 1fr)' className='recipeIngredient'>
                 <GridItem rowSpan={2} colSpan={1}>
                     <Skeleton height='50px' width='50px' />
                 </GridItem>
-                <GridItem colSpan={3}>
+                <GridItem colSpan={5}>
                     <Box>
                         <span className='itemShowLabel'>Name: </span>{ingredient.itemName}
                     </Box>

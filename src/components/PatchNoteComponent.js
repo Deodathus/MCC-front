@@ -1,4 +1,4 @@
-import {Box, Heading, ListItem, SimpleGrid, Tag, UnorderedList} from "@chakra-ui/react";
+import {Box, Heading, ListItem, Tag, UnorderedList} from "@chakra-ui/react";
 
 export default function PatchNoteComponent() {
     return (

@@ -43,3 +43,12 @@
 .patchNotesList>* {
     margin-top: 10px;
 }
+
+.subIngredientsList {
+    margin-left: 25px;
+}
+
+.developmentMapList>*,
+.patchNotesList>* {
+    margin-top: 10px;
+}
