@@ -12,6 +12,20 @@ async function calculateRecipe(recipeId, amount) {
     });
 }
 
+async function calculateRecipeTree(recipeId, amount) {
+    const api = minecraft();
+
+    return axios.get(
+        api.calculator.calculateTree.replace('{id}', recipeId),
+        {
+            params: {
+                amount
+            }
+        }
+    );
+}
+
 export default {
-    calculateRecipe
+    calculateRecipe,
+    calculateRecipeTree
 };

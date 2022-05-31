@@ -12,9 +12,13 @@ import ItemRecipeComponent from "./ItemRecipeComponent";
 import RecipeCalculateComponent from "../../../recipe/calculator/RecipeCalculateComponent";
 import {useState} from "react";
 import RecipeCalculateService from "../../../../../services/minecraft/calculator/RecipeCalculateService";
+import RecipeTreeComponent from "../../item/crud/recipe/RecipeTreeComponent";
 
 export default function RecipeModal(props) {
     const [recipe, setRecipe] = useState(props.recipe);
+    const [treeRecipe, setTreeRecipe] = useState();
+
+    const [treeCalculated, setTreeCalculated] = useState(false);
 
     const isModalOpen = props.isOpen;
     const onClose = props.onClose;
@@ -33,9 +37,20 @@ export default function RecipeModal(props) {
         setRecipe(recipeCopy);
     }
 
+    async function calculateTree() {
+        await calculate();
+
+        const response = await RecipeCalculateService.calculateRecipeTree(recipe.id, calculateAmount)
+            .catch(error => {});
+        const result = response.data;
+
+        setTreeCalculated(true);
+        setTreeRecipe(result);
+    }
+
     return (
         <>
-            <Modal isOpen={isModalOpen} size='3xl' onClose={onClose} isCentered>
+            <Modal isOpen={isModalOpen} size='5xl' onClose={onClose} isCentered scrollBehavior='inside'>
                 <ModalOverlay />
                 <ModalContent>
 
@@ -53,10 +68,16 @@ export default function RecipeModal(props) {
 
                         <RecipeCalculateComponent defaultValue={calculateAmount} setCalculationAmount={setCalculateAmount} />
 
+                        <RecipeTreeComponent treeRecipe={treeRecipe} treeCalculated={treeCalculated} />
+
                     </ModalBody>
 
                     <ModalFooter>
-                        <Button colorScheme='green' onClick={calculate}>
+                        <Button colorScheme='yellow' onClick={calculateTree}>
+                            Calculate tree
+                        </Button>
+
+                        <Button colorScheme='green' ml={3} onClick={calculate}>
                             Calculate
                         </Button>
 
