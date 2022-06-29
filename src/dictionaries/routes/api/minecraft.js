@@ -5,7 +5,7 @@ export default function() {
 
     switch (process.env.REACT_APP_ENV) {
         case Environment.PROD.value:
-            host = 'http://lil-develo.com/';
+            host = 'https://lil-develo.com/';
 
             break;
         default:
