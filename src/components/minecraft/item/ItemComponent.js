@@ -18,6 +18,14 @@ export default function ItemComponent(props) {
         );
     }
 
+    function cutItemNameIfNeeded(name) {
+        if (name.length > 25) {
+            return name.slice(0, 22) + '...';
+        } else {
+            return name;
+        }
+    }
+
     return (
         <>
             <Link to={'/items/' + item.id}>
@@ -30,7 +38,7 @@ export default function ItemComponent(props) {
                     <Box height='80px'>
                         <Center paddingTop='5px'>
                             <Box>
-                                { item.name }
+                                { cutItemNameIfNeeded(item.name) }
                             </Box>
                         </Center>
                         <Center paddingTop='5ox'>

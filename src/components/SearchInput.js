@@ -5,12 +5,15 @@ import {useState} from "react";
 import {useNavigate} from "react-router";
 
 export default function SearchInput() {
-    const [searchPhrase, setSearchPhrase] = useState("");
+    const [searchPhrase, setSearchPhrase] = useState();
+
     const navigate = useNavigate();
 
     function search() {
         if (searchPhrase.length > 0) {
-            navigate('/items?searchPhrase=' + searchPhrase);
+            let urlToNavigate = '/items?searchPhrase=' + searchPhrase;
+
+            navigate(urlToNavigate);
         }
     }
 

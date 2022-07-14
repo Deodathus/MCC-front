@@ -16,7 +16,7 @@ function fetchAll(action) {
     return async function fetchAllThunk(dispatch, getState) {
         dispatch(ItemCrudActionCreator.fetchStarted());
 
-        await FetchItems(action.payload.searchPhrase)
+        await FetchItems(action.payload.searchPhrase, action.payload.page, action.payload.perPage)
             .then(response => {
                 dispatch(ItemCrudActionCreator.fetchFinished(response.data));
             })

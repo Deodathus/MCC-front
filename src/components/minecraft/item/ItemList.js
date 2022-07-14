@@ -1,13 +1,19 @@
-import {SimpleGrid} from "@chakra-ui/react";
+import {Box, SimpleGrid} from "@chakra-ui/react";
 import {useSelector} from "react-redux";
 import ItemComponent from "./ItemComponent";
 import {useState} from "react";
 import Statuses from "../../../dictionaries/actions/item/Statuses";
 import ItemSkeletonComponent from "./ItemSkeletonComponent";
+import ReactPaginate from "react-paginate";
+import {useNavigate} from "react-router";
+import {useSearchParams} from "react-router-dom";
 
 export default function ItemList() {
     const items = useSelector(state => state.items.elements);
     const [status, setStatus] = useState(Statuses.loading);
+
+    const navigate = useNavigate();
+    const [searchParams, setSearchParams] = useSearchParams();
 
     useSelector(state => {
         switch (state.items.status) {
@@ -38,11 +44,29 @@ export default function ItemList() {
         });
     }
 
+    function handlePageChange(event) {
+        let urlToNavidate = '/items?page=' + (event.selected + 1);
+
+        if (searchParams.get('searchPhrase') && searchParams.get('searchPhrase').length > 0) {
+            urlToNavidate += '&searchPhrase=' + searchParams.get('searchPhrase')
+        }
+
+        navigate(urlToNavidate);
+    }
+
     return (
         <>
             <SimpleGrid columns={{sm: 6, md: 12}}>
                 { itemsComponents }
             </SimpleGrid>
+
+            <Box className='paginator'>
+                <ReactPaginate
+                    renderOnZeroPageCount={null}
+                    onPageChange={(e) => {handlePageChange(e)}}
+                    pageCount={60}
+                />
+            </Box>
         </>
     );
 }

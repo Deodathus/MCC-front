@@ -14,7 +14,11 @@ export default function ItemContent() {
 
     useEffect(() => {
         dispatch(CrudItemReducer.fetchAll(
-            ItemCrudActionCreator.fetchAll(searchParams.get('searchPhrase'))
+            ItemCrudActionCreator.fetchAll(
+                searchParams.get('searchPhrase'),
+                searchParams.get('page'),
+                searchParams.get('perPage')
+            )
         ))
     });
 
