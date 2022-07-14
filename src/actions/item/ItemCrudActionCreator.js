@@ -1,9 +1,12 @@
 
 import Types from '../../dictionaries/actions/item/Types';
 
-function fetchAll() {
+function fetchAll(searchPhrase = null) {
     return {
-        type: Types.ITEM.FETCH.ALL.type
+        type: Types.ITEM.FETCH.ALL.type,
+        payload: {
+            searchPhrase
+        }
     };
 }
 

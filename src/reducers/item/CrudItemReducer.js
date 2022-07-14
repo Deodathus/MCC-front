@@ -12,16 +12,18 @@ function fetchStarted(state, action) {
     }
 }
 
-async function fetchAll(dispatch, getState) {
-    dispatch(ItemCrudActionCreator.fetchStarted());
+function fetchAll(action) {
+    return async function fetchAllThunk(dispatch, getState) {
+        dispatch(ItemCrudActionCreator.fetchStarted());
 
-    await FetchItems()
-        .then(response => {
-            dispatch(ItemCrudActionCreator.fetchFinished(response.data));
-        })
-        .catch(error => {
-            dispatch(ItemCrudActionCreator.fetchError(error));
-        });
+        await FetchItems(action.payload.searchPhrase)
+            .then(response => {
+                dispatch(ItemCrudActionCreator.fetchFinished(response.data));
+            })
+            .catch(error => {
+                dispatch(ItemCrudActionCreator.fetchError(error));
+            });
+    }
 }
 
 function fetchOne(action) {
