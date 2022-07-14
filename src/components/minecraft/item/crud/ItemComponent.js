@@ -1,13 +1,17 @@
-import {Box, Skeleton} from "@chakra-ui/react";
+import {Box, Button, Skeleton} from "@chakra-ui/react";
 import ItemSkeletonComponent from "./ItemSkeletonComponent";
 import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import ItemCrudActionCreator from "../../../../actions/item/ItemCrudActionCreator";
 import CrudItemReducer from "../../../../reducers/item/CrudItemReducer";
 import Statuses from "../../../../dictionaries/actions/item/Statuses";
+import DeleteItem from "../../../../services/minecraft/item/crud/DeleteItem";
+import {useNavigate} from "react-router";
 
 export default function ItemComponent(props) {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     const itemId = props.itemId;
 
     const item = useSelector(state => {
@@ -35,6 +39,12 @@ export default function ItemComponent(props) {
         }
     });
 
+    async function deleteItem() {
+        await DeleteItem(itemId);
+
+        navigate('/items');
+    }
+
     if (item || status === Statuses.finished) {
         return (
             <Box className='itemShowContent'>
@@ -49,6 +59,9 @@ export default function ItemComponent(props) {
                 </Box>
                 <Box>
                     <span className='itemShowLabel'>Sub key:</span> {item.subKey}
+                </Box>
+                <Box>
+                    <Button onClick={deleteItem} colorScheme={'red'} size={'sm'}>Delete item</Button>
                 </Box>
             </Box>
         );
