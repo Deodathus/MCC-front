@@ -12,6 +12,7 @@ export default function PatchNoteComponent() {
                         <ListItem>Basic(CRUD) item, recipe pages <Tag colorScheme='green'>v0.1</Tag></ListItem>
                         <ListItem>Basic(single) recipe calculation <Tag colorScheme='green'>v1</Tag></ListItem>
                         <ListItem>Tree craft calculator <Tag colorScheme='green'>v1.1</Tag></ListItem>
+                        <ListItem>Items import from JSON <Tag colorScheme='green'>v1.2</Tag></ListItem>
                     </UnorderedList>
                 </Box>
             </Box>

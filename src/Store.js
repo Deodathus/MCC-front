@@ -9,7 +9,7 @@ import Statuses from "./dictionaries/actions/item/Statuses";
 let preloadedState = {
     data: {
         general: {
-            version: 1.1,
+            version: 1.2,
             year: 2022
         }
     },

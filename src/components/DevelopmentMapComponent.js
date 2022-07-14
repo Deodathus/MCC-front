@@ -12,7 +12,9 @@ export default function DevelopmentMapComponent() {
                         <ListItem>
                             <span className='versionReleased'>Tree craft calculator</span> <Tag colorScheme='orange'><span className='versionReleased'>~v1.1</span></Tag>
                         </ListItem>
-                        <ListItem>Items import from JSON <Tag colorScheme='orange'>~v1.2</Tag></ListItem>
+                        <ListItem>
+                            <span className='versionReleased'>Items import from JSON</span> <Tag colorScheme='orange'><span className='versionReleased'>~v1.2</span></Tag>
+                        </ListItem>
                         <ListItem>Shapeless recipes import from JSON <Tag colorScheme='orange'>~v1.3.0</Tag></ListItem>
                         <ListItem>Shaped recipes import from JSON <Tag colorScheme='orange'>~v1.3.1</Tag></ListItem>
                         <ListItem>GT machines recipes import from JSON <Tag colorScheme='orange'>~v1.3.2</Tag></ListItem>
