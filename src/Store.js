@@ -9,14 +9,15 @@ import Statuses from "./dictionaries/actions/item/Statuses";
 let preloadedState = {
     data: {
         general: {
-            version: 1.2,
+            version: '1.2.1',
             year: 2022
         }
     },
     items: {
         elements: {},
         status: Statuses.loading,
-        recipes: {}
+        recipes: {},
+        pagination: {}
     },
     forms: {
         createItem: {

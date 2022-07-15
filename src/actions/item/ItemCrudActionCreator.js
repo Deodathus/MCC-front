@@ -1,9 +1,14 @@
 
 import Types from '../../dictionaries/actions/item/Types';
 
-function fetchAll() {
+function fetchAll(searchPhrase = null, page = 1, perPage = 60) {
     return {
-        type: Types.ITEM.FETCH.ALL.type
+        type: Types.ITEM.FETCH.ALL.type,
+        payload: {
+            searchPhrase,
+            page,
+            perPage
+        }
     };
 }
 
@@ -30,10 +35,13 @@ function fetchError(error) {
     }
 }
 
-function fetchFinished(items) {
+function fetchFinished(items, headers = []) {
     return {
         type: Types.ITEM.FETCH.FINISHED.type,
-        payload: items
+        payload: {
+            items,
+            headers
+        }
     }
 }
 

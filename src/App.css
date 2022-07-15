@@ -56,3 +56,12 @@
 .patchNotesList>* {
     margin-top: 10px;
 }
+
+.paginator {
+    text-align: center;
+    margin-top: 25px;
+}
+.paginator li {
+    display: inline;
+    padding: 5px;
+}

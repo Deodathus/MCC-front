@@ -12,16 +12,18 @@ function fetchStarted(state, action) {
     }
 }
 
-async function fetchAll(dispatch, getState) {
-    dispatch(ItemCrudActionCreator.fetchStarted());
+function fetchAll(action) {
+    return async function fetchAllThunk(dispatch, getState) {
+        dispatch(ItemCrudActionCreator.fetchStarted());
 
-    await FetchItems()
-        .then(response => {
-            dispatch(ItemCrudActionCreator.fetchFinished(response.data));
-        })
-        .catch(error => {
-            dispatch(ItemCrudActionCreator.fetchError(error));
-        });
+        await FetchItems(action.payload.searchPhrase, action.payload.page, action.payload.perPage)
+            .then(response => {
+                dispatch(ItemCrudActionCreator.fetchFinished(response.data, response.headers));
+            })
+            .catch(error => {
+                dispatch(ItemCrudActionCreator.fetchError(error));
+            });
+    }
 }
 
 function fetchOne(action) {
@@ -51,10 +53,16 @@ function fetchOneFinished(state, action) {
 }
 
 function fetchFinished(state, action) {
+    const pagination = {};
+    if (action.payload.headers['x-total-pages'].length > 0) {
+        pagination.totalPages = action.payload.headers['x-total-pages'];
+    }
+
     return {
         ...state,
-        elements: ItemsArrayToJsonTransformer(action.payload),
-        status: Statuses.finished
+        elements: ItemsArrayToJsonTransformer(action.payload.items),
+        status: Statuses.finished,
+        pagination
     };
 }
 

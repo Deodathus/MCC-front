@@ -3,6 +3,8 @@ import AsyncSelect from "react-select/async";
 import { useSelector } from "react-redux";
 import {useState} from "react";
 import Statuses from "../../../../dictionaries/actions/item/Statuses";
+import FetchItems from "../../../../services/minecraft/item/crud/FetchItems";
+import ItemsArrayToJsonTransformer from "../../../../services/minecraft/item/transformer/ItemsArrayToJsonTransformer";
 
 export default function ItemSelectComponent(props) {
     const items = useSelector(state => state.items.elements);
@@ -42,11 +44,22 @@ export default function ItemSelectComponent(props) {
         return result;
     }
 
+    async function search(searchPhrase) {
+        let searchedItems = await FetchItems(searchPhrase, 1, 400);
+
+        return prepareOptions(ItemsArrayToJsonTransformer(searchedItems.data));
+    }
+
     const options = prepareOptions(items);
 
     return (
         <>
-            <AsyncSelect onChange={(e) => props.onChange(e)} isMulti defaultOptions={options} />
+            <AsyncSelect
+                onChange={(e) => props.onChange(e)}
+                isMulti
+                defaultOptions={options}
+                loadOptions={(searchPhrase) => search(searchPhrase)}
+            />
         </>
     );
 }

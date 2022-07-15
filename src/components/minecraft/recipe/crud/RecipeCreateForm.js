@@ -106,7 +106,7 @@ export default function RecipeCreateForm() {
                         <Box>
                             <FormControl>
                                 <FormLabel htmlFor='name'>
-                                    <span className="label">Item's name</span>
+                                    <span className="label">Recipe's name</span>
                                 </FormLabel>
                                 <Input id='name' name='name' onChange={(e) => setName(e.target.value)} />
                             </FormControl>
