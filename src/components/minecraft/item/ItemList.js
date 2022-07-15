@@ -10,6 +10,7 @@ import {useSearchParams} from "react-router-dom";
 
 export default function ItemList() {
     const items = useSelector(state => state.items.elements);
+    const totalPages = useSelector(state => state.items.pagination.totalPages);
     const [status, setStatus] = useState(Statuses.loading);
 
     const navigate = useNavigate();
@@ -64,7 +65,7 @@ export default function ItemList() {
                 <ReactPaginate
                     renderOnZeroPageCount={null}
                     onPageChange={(e) => {handlePageChange(e)}}
-                    pageCount={60}
+                    pageCount={totalPages}
                 />
             </Box>
         </>

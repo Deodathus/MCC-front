@@ -45,7 +45,7 @@ export default function ItemSelectComponent(props) {
     }
 
     async function search(searchPhrase) {
-        let searchedItems = await FetchItems(searchPhrase);
+        let searchedItems = await FetchItems(searchPhrase, 1, 400);
 
         return prepareOptions(ItemsArrayToJsonTransformer(searchedItems.data));
     }

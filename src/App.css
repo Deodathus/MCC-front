@@ -59,6 +59,7 @@
 
 .paginator {
     text-align: center;
+    margin-top: 25px;
 }
 .paginator li {
     display: inline;

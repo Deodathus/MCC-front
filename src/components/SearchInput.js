@@ -17,10 +17,16 @@ export default function SearchInput() {
         }
     }
 
+    function triggerSearch(e) {
+        if (e.keyCode === 13 || e.code === 'Enter') {
+            search();
+        }
+    }
+
     return (
         <>
             <InputGroup size='md'>
-                <Input pr='1.5rem' placeholder='search for item' name='searchPhrase' onChange={event => {setSearchPhrase(event.target.value)}} />
+                <Input pr='1.5rem' onKeyDown={e => {triggerSearch(e)}} placeholder='search for item' name='searchPhrase' onChange={event => {setSearchPhrase(event.target.value)}} />
                 <InputRightElement width='3rem'>
                     <IconButton onClick={search} aria-label='search for item' size='sm' icon={<SearchIcon />} />
                 </InputRightElement>

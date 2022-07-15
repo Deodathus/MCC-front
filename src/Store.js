@@ -16,7 +16,8 @@ let preloadedState = {
     items: {
         elements: {},
         status: Statuses.loading,
-        recipes: {}
+        recipes: {},
+        pagination: {}
     },
     forms: {
         createItem: {

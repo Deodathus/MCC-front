@@ -18,7 +18,7 @@ function fetchAll(action) {
 
         await FetchItems(action.payload.searchPhrase, action.payload.page, action.payload.perPage)
             .then(response => {
-                dispatch(ItemCrudActionCreator.fetchFinished(response.data));
+                dispatch(ItemCrudActionCreator.fetchFinished(response.data, response.headers));
             })
             .catch(error => {
                 dispatch(ItemCrudActionCreator.fetchError(error));
@@ -53,10 +53,16 @@ function fetchOneFinished(state, action) {
 }
 
 function fetchFinished(state, action) {
+    const pagination = {};
+    if (action.payload.headers['x-total-pages'].length > 0) {
+        pagination.totalPages = action.payload.headers['x-total-pages'];
+    }
+
     return {
         ...state,
-        elements: ItemsArrayToJsonTransformer(action.payload),
-        status: Statuses.finished
+        elements: ItemsArrayToJsonTransformer(action.payload.items),
+        status: Statuses.finished,
+        pagination
     };
 }
 
