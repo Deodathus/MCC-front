@@ -12,7 +12,7 @@ import ItemRecipeComponent from "./ItemRecipeComponent";
 import RecipeCalculateComponent from "../../../recipe/calculator/RecipeCalculateComponent";
 import {useState} from "react";
 import RecipeCalculateService from "../../../../../services/minecraft/calculator/RecipeCalculateService";
-import RecipeTreeComponent from "../../item/crud/recipe/RecipeTreeComponent";
+import RecipeTreeComponent from "../../calculation/crud/recipe/RecipeTreeComponent";
 
 export default function RecipeModal(props) {
     const [recipe, setRecipe] = useState(props.recipe);
