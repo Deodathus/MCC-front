@@ -30,6 +30,15 @@ const types = {
         STORE: {
             ONE: {
                 type: 'ITEM|STORE_ACTION'
+            },
+            SUCCESS: {
+                type: 'ITEM|STORE_SUCCESS'
+            },
+            ERROR: {
+                type: 'ITEM|STORE_ERROR'
+            },
+            RESET_STATUS: {
+                type: 'ITEM|RESET_STATUS'
             }
         },
         ADD: {

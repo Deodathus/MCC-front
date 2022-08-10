@@ -1,7 +1,9 @@
+
 import CreateItem from "../../services/minecraft/item/crud/StoreItem";
 import FetchItems from "../../services/minecraft/item/crud/FetchItems";
 import ItemCrudActionCreator from "../../actions/item/ItemCrudActionCreator";
 import Statuses from "../../dictionaries/actions/item/Statuses";
+import ProcessStatuses from "../../dictionaries/actions/process/Statuses";
 import ItemsArrayToJsonTransformer from "../../services/minecraft/item/transformer/ItemsArrayToJsonTransformer";
 import FetchItem from "../../services/minecraft/item/crud/FetchItem";
 
@@ -73,16 +75,60 @@ function fetchError(state, action) {
     };
 }
 
-function storeItem(state, action) {
-    const itemToStore = action.payload;
+function storeItem(action) {
+    return async function storeItemThunk(dispatch, getState) {
+        const itemToStore = action.payload;
 
-    CreateItem(
-        itemToStore.key,
-        itemToStore.subKey,
-        itemToStore.name
-    );
+        await CreateItem(
+            itemToStore.key,
+            itemToStore.subKey,
+            itemToStore.name
+        ).then(response => {
+            if (response.status === 201) {
+                dispatch(ItemCrudActionCreator.storeItemSuccess());
+            } else {
+                dispatch(ItemCrudActionCreator.storeItemError());
+            }
+        }).catch(error => {
+            dispatch(ItemCrudActionCreator.storeItemError());
+        })
+    }
+}
 
-    return state;
+function storeItemSuccess(state) {
+    return {
+        ...state,
+        process: {
+            ...state.process,
+            storeOne: {
+                status: ProcessStatuses.success
+            }
+        }
+    };
+}
+
+function storeItemError(state) {
+    return {
+        ...state,
+        process: {
+            ...state.process,
+            storeOne: {
+                status: ProcessStatuses.error
+            }
+        }
+    };
+}
+
+function resetStoreItemStatus(state) {
+    return {
+        ...state,
+        process: {
+            ...state.process,
+            storeOne: {
+                status: ProcessStatuses.idle
+            }
+        }
+    };
 }
 
 export default {
@@ -92,5 +138,8 @@ export default {
     fetchAll,
     fetchError,
     fetchFinished,
-    storeItem
+    storeItem,
+    storeItemSuccess,
+    storeItemError,
+    resetStoreItemStatus
 };
