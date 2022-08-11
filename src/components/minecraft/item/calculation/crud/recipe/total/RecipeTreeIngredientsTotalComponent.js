@@ -10,20 +10,22 @@ export default function RecipeTreeIngredientsTotalComponent(props) {
         // @TODO: fetch items if they are not in redux storage (only items that are needed)
 
         ingredients.forEach(ingredient => {
-            if (total[ingredient.itemId] > 0) {
-                total[ingredient.itemId] = {
-                    name: ingredient.itemName,
-                    amount: ingredient.amount + total[ingredient.itemId].amount
+            let firstIngredient = ingredient[0];
+
+            if (typeof total[firstIngredient.itemId] != 'undefined' && total[firstIngredient.itemId].amount > 0) {
+                total[firstIngredient.itemId] = {
+                    name: firstIngredient.itemName,
+                    amount: firstIngredient.amount + total[firstIngredient.itemId].amount
                 }
             } else {
-                total[ingredient.itemId] = {
-                    name: ingredient.itemName,
-                    amount: ingredient.amount
+                total[firstIngredient.itemId] = {
+                    name: firstIngredient.itemName,
+                    amount: firstIngredient.amount
                 }
             }
 
-            if (ingredient.asResult && ingredient.asResult.length > 0) {
-                totalFromIngredient = countTotal(ingredient.asResult);
+            if (firstIngredient.asResult && firstIngredient.asResult.length > 0) {
+                totalFromIngredient = countTotal(firstIngredient.asResult);
 
                 Object.keys(totalFromIngredient).forEach(key => {
                     if (key in total) {

@@ -2,7 +2,7 @@ import {Box, Grid, GridItem, Skeleton} from "@chakra-ui/react";
 import AmountInStacksComponent from "../AmountInStacksComponent";
 
 export default function RecipeIngredientComponent(props) {
-    const ingredient = props.ingredient;
+    const ingredient = props.ingredient[0];
 
     return (
         <>
