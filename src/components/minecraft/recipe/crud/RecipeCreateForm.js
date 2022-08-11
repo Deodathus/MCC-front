@@ -6,9 +6,9 @@ import {
     Flex,
     FormControl,
     FormLabel,
-    Input,
+    Input, NumberDecrementStepper, NumberIncrementStepper,
     NumberInput,
-    NumberInputField,
+    NumberInputField, NumberInputStepper,
     SimpleGrid,
     Spacer, useToast
 } from "@chakra-ui/react";
@@ -21,6 +21,7 @@ import RecipeCrudActionCreator from "../../../../actions/recipe/RecipeCrudAction
 import CrudRecipeReducer from "../../../../reducers/recipe/CrudRecipeReducer";
 import Statuses from "../../../../dictionaries/actions/process/Statuses";
 import ItemCrudActionCreator from "../../../../actions/item/ItemCrudActionCreator";
+import RecipeSelectItemsForIngredientComponent from "./RecipeSelectItemsForIngredientComponent";
 
 export default function RecipeCreateForm() {
     const dispatch = useDispatch();
@@ -29,9 +30,9 @@ export default function RecipeCreateForm() {
     const [storeStatus, setStoreStatus] = useState(Statuses.idle);
 
     const [name, setName] = useState('');
-    const [selectedIngredients, setSelectedIngredients] = useState(null);
+    const [ingredientsAmount, setIngredientsAmount] = useState();
+    const [itemSelectsForIngredients, setItemSelectsForIngredients] = useState();
     const [selectedRecipeResults, setSelectedRecipeResults] = useState(null);
-    const [ingredientAmountInputs, setIngredientAmountInputs] = useState();
     const [recipeResultAmountInputs, setRecipeResultAmountInputs] = useState();
 
     useEffect(() => {
@@ -96,11 +97,18 @@ export default function RecipeCreateForm() {
             if (item.name) {
                 if (item.name.includes('ingredient')) {
                     let itemId = parseInt(item.name.split('-')[1]);
+                    let ingredientKey = parseInt(item.name.split('-')[2]);
 
-                    ingredients.push({
-                        itemId: itemId,
-                        amount: parseInt(item.value)
-                    });
+                    if (typeof ingredients[ingredientKey] == 'undefined' && !isNaN(ingredientKey)) {
+                        ingredients[ingredientKey] = [];
+                    }
+
+                    if (!isNaN(ingredientKey)) {
+                        ingredients[ingredientKey].push({
+                            itemId: itemId,
+                            amount: parseInt(item.value)
+                        });
+                    }
                 } else if (item.name.includes('recipeResult')) {
                     let itemId = parseInt(item.name.split('-')[1]);
 
@@ -112,48 +120,29 @@ export default function RecipeCreateForm() {
             }
         });
 
+        console.log(ingredients);
+
         dispatch(CrudRecipeReducer.storeRecipe(RecipeCrudActionCreator.storeRecipe(name, ingredients, recipeResults)));
     }
 
-    function displayAmountInputForIngredient(value) {
-        let result;
+    function displayItemSelectForIngredients(ingredientsAmount) {
+        setIngredientsAmount(ingredientsAmount);
 
-        result = value.map((item) => {
-            return (
-                <FormControl key={item.value}>
-                    <FormLabel htmlFor={'ingredient-' + item.value}>
-                        <span className="label"> { item.label + ' amount:' } </span>
-                    </FormLabel>
-                    <NumberInput style={{marginTop: 10}} id={'ingredient-' + item.value} name={'ingredient-' + item.value}>
-                        <NumberInputField />
-                    </NumberInput>
-                </FormControl>
-            );
-        });
+        let itemSelectsForIngredients = [];
 
-        setIngredientAmountInputs(result);
-
-        let newRawSelectedIngredients = [];
-        Object.values(value).forEach(item => {
-            newRawSelectedIngredients.push({
-                value: item.value,
-                label: item.label
-            });
-        });
-
-        if (newRawSelectedIngredients.length === 0) {
-            setSelectedIngredients(null);
-        } else {
-            setSelectedIngredients(newRawSelectedIngredients);
+        for (let i = 0; i < ingredientsAmount; i++) {
+            itemSelectsForIngredients.push(<RecipeSelectItemsForIngredientComponent ingredientKey={i} />);
         }
+
+        setItemSelectsForIngredients(itemSelectsForIngredients);
     }
 
     function displayAmountInputForRecipeResult(value) {
         let result;
 
-        result = value.map((item) => {
+        result = value.map((item, key) => {
             return (
-                <FormControl key={item.value}>
+                <FormControl style={{marginTop: 10}} key={item.value + key}>
                     <FormLabel htmlFor={'recipeResult-' + item.value}>
                         <span className="label"> { item.label + ' amount:' } </span>
                     </FormLabel>
@@ -183,9 +172,9 @@ export default function RecipeCreateForm() {
 
     function clearForm() {
         setName('');
-        setSelectedIngredients(null);
+        setItemSelectsForIngredients(null);
+        setIngredientsAmount('');
         setSelectedRecipeResults(null);
-        setIngredientAmountInputs(null);
         setRecipeResultAmountInputs(null);
     }
 
@@ -207,40 +196,39 @@ export default function RecipeCreateForm() {
                     </SimpleGrid>
 
                     <SimpleGrid columns={{sm: 2, md: 2, lg: 2}} spacing={10}>
-
                         <Box>
-                            <FormControl>
-                                <FormLabel htmlFor='key'>
-                                    <span className='label'>Recipe ingredients</span>
+                            <FormControl style={{marginTop: 10}}>
+                                <FormLabel htmlFor={'ingredientsAmount'}>
+                                    <span className='label'>Recipe ingredients amount</span>
                                 </FormLabel>
-                                <ItemSelectComponent selectedOptions={selectedIngredients} onChange={displayAmountInputForIngredient} />
+                                <NumberInput max={20} value={ingredientsAmount} style={{marginTop: 10}} id={'ingredientsAmount'} name={'ingredientsAmount'} onChange={displayItemSelectForIngredients}>
+                                    <NumberInputField />
+                                    <NumberInputStepper>
+                                        <NumberIncrementStepper />
+                                        <NumberDecrementStepper />
+                                    </NumberInputStepper>
+                                </NumberInput>
                             </FormControl>
-                        </Box>
 
-                        <Box>
-                            <FormControl>
-                                <FormLabel htmlFor='subKey'>
-                                    <span className='label'>Recipe results</span>
-                                </FormLabel>
-                                <ItemSelectComponent selectedOptions={selectedRecipeResults} onChange={displayAmountInputForRecipeResult} />
-                            </FormControl>
-                        </Box>
-
-                    </SimpleGrid>
-
-                    <SimpleGrid columns={{sm: 2, md: 2, lg: 2}} spacing={10} style={{marginTop: 25}}>
-
-                        <SimpleGrid columns={{sm: 2, md: 2, lg: 3}} spacing={10}>
-                            <Box className='ingredientAmountBox'>
-                                { ingredientAmountInputs }
+                            <Box>
+                                { itemSelectsForIngredients }
                             </Box>
-                        </SimpleGrid>
+                        </Box>
 
-                        <SimpleGrid columns={{sm: 2, md: 2, lg: 3}} spacing={10}>
+                        <Box>
+                            <Box>
+                                <FormControl style={{marginTop: 10}}>
+                                    <FormLabel htmlFor='subKey'>
+                                        <span className='label'>Recipe results</span>
+                                    </FormLabel>
+                                    <ItemSelectComponent selectedOptions={selectedRecipeResults} onChange={displayAmountInputForRecipeResult} />
+                                </FormControl>
+                            </Box>
+
                             <Box className='recipeResultAmountBox'>
                                 { recipeResultAmountInputs }
                             </Box>
-                        </SimpleGrid>
+                        </Box>
 
                     </SimpleGrid>
 
