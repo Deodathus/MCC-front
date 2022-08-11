@@ -63,6 +63,24 @@ function storeItem(key, subKey, name) {
     };
 }
 
+function storeItemSuccess() {
+    return {
+        type: Types.ITEM.STORE.SUCCESS.type
+    }
+}
+
+function storeItemError() {
+    return {
+        type: Types.ITEM.STORE.ERROR.type
+    };
+}
+
+function resetStoreItemStatus() {
+    return {
+        type: Types.ITEM.STORE.RESET_STATUS.type
+    }
+}
+
 function addItem(itemId, key, subKey, name) {
     return {
         type: Types.ITEM.ADD.ONE.type,
@@ -93,5 +111,8 @@ export default {
     fetchFinished,
     storeItem,
     addItem,
-    removeItem
+    removeItem,
+    storeItemSuccess,
+    storeItemError,
+    resetStoreItemStatus
 }

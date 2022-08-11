@@ -1,3 +1,4 @@
+
 import {
     Box,
     Button,
@@ -9,26 +10,81 @@ import {
     NumberInput,
     NumberInputField,
     SimpleGrid,
-    Spacer
+    Spacer, useToast
 } from "@chakra-ui/react";
 
 import {useEffect, useState} from "react";
 import ItemSelectComponent from "./ItemSelectComponent";
 import CrudItemReducer from "../../../../reducers/item/CrudItemReducer";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import RecipeCrudActionCreator from "../../../../actions/recipe/RecipeCrudActionCreator";
+import CrudRecipeReducer from "../../../../reducers/recipe/CrudRecipeReducer";
+import Statuses from "../../../../dictionaries/actions/process/Statuses";
+import ItemCrudActionCreator from "../../../../actions/item/ItemCrudActionCreator";
 
 export default function RecipeCreateForm() {
-    const [name, setName] = useState('');
+    const dispatch = useDispatch();
+    const toast = useToast();
 
+    const [storeStatus, setStoreStatus] = useState(Statuses.idle);
+
+    const [name, setName] = useState('');
+    const [selectedIngredients, setSelectedIngredients] = useState(null);
+    const [selectedRecipeResults, setSelectedRecipeResults] = useState(null);
     const [ingredientAmountInputs, setIngredientAmountInputs] = useState();
     const [recipeResultAmountInputs, setRecipeResultAmountInputs] = useState();
 
-    const dispatch = useDispatch();
-
     useEffect(() => {
-        dispatch(CrudItemReducer.fetchAll)
-    });
+        dispatch(CrudItemReducer.fetchAll(
+            ItemCrudActionCreator.fetchAll(
+                '',
+                1,
+                400
+            )
+        ))
+    }, []);
+
+    handleStoreStatus();
+
+    function handleStoreStatus() {
+        useSelector(state => {
+            switch (state.recipes.process.storeOne.status) {
+                default:
+                case Statuses.idle:
+                    break;
+                case Statuses.success:
+                    if (storeStatus !== Statuses.success) {
+                        toast({
+                            title: 'Recipe was added',
+                            status: "success",
+                            isClosable: true,
+                            duration: 2000,
+                            position: "top-end"
+                        });
+
+                        clearForm();
+                    }
+
+                    dispatch(RecipeCrudActionCreator.resetStoreRecipeStatus());
+
+                    break;
+                case Statuses.error:
+                    if (storeStatus !== Statuses.error) {
+                        toast({
+                            title: 'Recipe was not added',
+                            status: "error",
+                            isClosable: true,
+                            duration: 2000,
+                            position: "top-end"
+                        });
+                    }
+
+                    dispatch(RecipeCrudActionCreator.resetStoreRecipeStatus());
+
+                    break;
+            }
+        });
+    }
 
     function createRecipe(e) {
         e.preventDefault();
@@ -56,7 +112,7 @@ export default function RecipeCreateForm() {
             }
         });
 
-        dispatch(RecipeCrudActionCreator.storeRecipe(name, ingredients, recipeResults));
+        dispatch(CrudRecipeReducer.storeRecipe(RecipeCrudActionCreator.storeRecipe(name, ingredients, recipeResults)));
     }
 
     function displayAmountInputForIngredient(value) {
@@ -76,6 +132,20 @@ export default function RecipeCreateForm() {
         });
 
         setIngredientAmountInputs(result);
+
+        let newRawSelectedIngredients = [];
+        Object.values(value).forEach(item => {
+            newRawSelectedIngredients.push({
+                value: item.value,
+                label: item.label
+            });
+        });
+
+        if (newRawSelectedIngredients.length === 0) {
+            setSelectedIngredients(null);
+        } else {
+            setSelectedIngredients(newRawSelectedIngredients);
+        }
     }
 
     function displayAmountInputForRecipeResult(value) {
@@ -95,12 +165,34 @@ export default function RecipeCreateForm() {
         });
 
         setRecipeResultAmountInputs(result);
+
+        let newSelectedRecipeResults = [];
+        Object.values(value).forEach(item => {
+            newSelectedRecipeResults.push({
+                value: item.value,
+                label: item.label
+            });
+        });
+
+        if (newSelectedRecipeResults.length === 0) {
+            setSelectedRecipeResults(null);
+        } else {
+            setSelectedRecipeResults(newSelectedRecipeResults);
+        }
+    }
+
+    function clearForm() {
+        setName('');
+        setSelectedIngredients(null);
+        setSelectedRecipeResults(null);
+        setIngredientAmountInputs(null);
+        setRecipeResultAmountInputs(null);
     }
 
     return (
         <>
             <Container className='content'>
-                <form action="/home/bohdan/projects/organizer-front/public" onSubmit={createRecipe}>
+                <form action="" onSubmit={createRecipe}>
                     <SimpleGrid columns={{sm: 2, md: 4, lg: 6}} spacing={10}>
 
                         <Box>
@@ -108,7 +200,7 @@ export default function RecipeCreateForm() {
                                 <FormLabel htmlFor='name'>
                                     <span className="label">Recipe's name</span>
                                 </FormLabel>
-                                <Input id='name' name='name' onChange={(e) => setName(e.target.value)} />
+                                <Input id='name' name='name' value={name} onChange={(e) => setName(e.target.value)} />
                             </FormControl>
                         </Box>
 
@@ -121,7 +213,7 @@ export default function RecipeCreateForm() {
                                 <FormLabel htmlFor='key'>
                                     <span className='label'>Recipe ingredients</span>
                                 </FormLabel>
-                                <ItemSelectComponent onChange={displayAmountInputForIngredient} />
+                                <ItemSelectComponent selectedOptions={selectedIngredients} onChange={displayAmountInputForIngredient} />
                             </FormControl>
                         </Box>
 
@@ -130,7 +222,7 @@ export default function RecipeCreateForm() {
                                 <FormLabel htmlFor='subKey'>
                                     <span className='label'>Recipe results</span>
                                 </FormLabel>
-                                <ItemSelectComponent onChange={displayAmountInputForRecipeResult} />
+                                <ItemSelectComponent selectedOptions={selectedRecipeResults} onChange={displayAmountInputForRecipeResult} />
                             </FormControl>
                         </Box>
 

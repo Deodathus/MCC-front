@@ -10,7 +10,12 @@ import {useSearchParams} from "react-router-dom";
 
 export default function ItemList() {
     const items = useSelector(state => state.items.elements);
-    const totalPages = useSelector(state => state.items.pagination.totalPages);
+
+    let totalPages = useSelector(state => state.items.pagination.totalPages);
+    if (typeof totalPages == 'undefined') {
+        totalPages = 1;
+    }
+
     const [status, setStatus] = useState(Statuses.loading);
 
     const navigate = useNavigate();
@@ -65,7 +70,7 @@ export default function ItemList() {
                 <ReactPaginate
                     renderOnZeroPageCount={null}
                     onPageChange={(e) => {handlePageChange(e)}}
-                    pageCount={totalPages}
+                    pageCount={Math.ceil(totalPages)}
                 />
             </Box>
         </>
