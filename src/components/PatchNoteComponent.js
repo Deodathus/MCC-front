@@ -14,6 +14,7 @@ export default function PatchNoteComponent() {
                         <ListItem>Tree craft calculator <Tag colorScheme='green'>v1.1</Tag></ListItem>
                         <ListItem>Items import from JSON <Tag colorScheme='green'>v1.2</Tag></ListItem>
                         <ListItem>Items search system <Tag colorScheme='green'>v1.2.1</Tag></ListItem>
+                        <ListItem>User experience opts <Tag colorScheme='green'>v1.2.2</Tag></ListItem>
                     </UnorderedList>
                 </Box>
             </Box>

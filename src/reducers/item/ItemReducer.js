@@ -14,9 +14,14 @@ export default function ItemReducer(state = [], action) {
             return CrudItemReducer.fetchOneFinished(state, action);
         case Types.ITEM.FETCH.RECIPES_FINISHED.type:
             return ItemRecipeReducer.fetchRecipesForItemFinished(state, action);
-
         case Types.ITEM.STORE.ONE.type:
             return CrudItemReducer.storeItem(state, action);
+        case Types.ITEM.STORE.SUCCESS.type:
+            return CrudItemReducer.storeItemSuccess(state, action);
+        case Types.ITEM.STORE.ERROR.type:
+            return CrudItemReducer.storeItemError(state, action);
+        case Types.ITEM.STORE.RESET_STATUS.type:
+            return CrudItemReducer.resetStoreItemStatus(state, action);
         default:
             break;
     }

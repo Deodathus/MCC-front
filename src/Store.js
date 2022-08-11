@@ -5,11 +5,12 @@ import { composeWithDevTools } from "redux-devtools-extension";
 
 import RootReducer from "./reducers/RootReducer";
 import Statuses from "./dictionaries/actions/item/Statuses";
+import ProcessStatuses from "./dictionaries/actions/process/Statuses";
 
 let preloadedState = {
     data: {
         general: {
-            version: '1.2.1',
+            version: '1.2.2',
             year: 2022
         }
     },
@@ -17,7 +18,19 @@ let preloadedState = {
         elements: {},
         status: Statuses.loading,
         recipes: {},
-        pagination: {}
+        pagination: {},
+        process: {
+            storeOne: {
+                status: ProcessStatuses.idle
+            }
+        }
+    },
+    recipes: {
+        process: {
+            storeOne: {
+                status: ProcessStatuses.idle
+            }
+        }
     },
     forms: {
         createItem: {
