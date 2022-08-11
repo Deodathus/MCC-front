@@ -25,6 +25,13 @@ let preloadedState = {
             }
         }
     },
+    recipes: {
+        process: {
+            storeOne: {
+                status: ProcessStatuses.idle
+            }
+        }
+    },
     forms: {
         createItem: {
             key: '',

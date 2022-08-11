@@ -55,6 +55,8 @@ export default function ItemSelectComponent(props) {
     return (
         <>
             <AsyncSelect
+                value={props.selectedOptions}
+                defaultValue={props.selectedOptions}
                 onChange={(e) => props.onChange(e)}
                 isMulti
                 defaultOptions={options}

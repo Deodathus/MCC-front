@@ -56,6 +56,15 @@ const types = {
         STORE: {
             ONE: {
                 type: 'RECIPE|STORE_ACTION'
+            },
+            SUCCESS: {
+                type: 'RECIPE|STORE_SUCCESS'
+            },
+            ERROR: {
+                type: 'RECIPE|STORE_ERROR'
+            },
+            RESET_STATUS: {
+                type: 'RECIPE|RESET_STATUS'
             }
         }
     }
