@@ -6,8 +6,8 @@ export default function RecipeTreeIngredientComponent(props) {
 
     let ingredientAsResults;
 
-    if (ingredient.asResult) {
-        ingredientAsResults = ingredient.asResult.map((asResultIngredient, key) => {
+    if (ingredient[0].asResult) {
+        ingredientAsResults = ingredient[0].asResult.map((asResultIngredient, key) => {
             return <RecipeTreeIngredientComponent ingredient={asResultIngredient} key={key} />
         });
     }
