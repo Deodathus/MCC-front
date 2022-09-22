@@ -7,22 +7,24 @@ function fetchRecipesForItemFinished(data) {
     };
 }
 
-function fetchRecipesAsIngredientForItemFinished(itemId, data) {
+function fetchRecipesAsIngredientForItemFinished(itemId, data, totalPages) {
     return {
         type: Types.ITEM.FETCH.RECIPES_AS_INGREDIENT_FINISHED.type,
         payload: {
             data,
-            itemId: parseInt(itemId)
+            itemId: parseInt(itemId),
+            totalPages
         }
     }
 }
 
-function fetchRecipesAsResultForItemFinished(itemId, data) {
+function fetchRecipesAsResultForItemFinished(itemId, data, totalPages) {
     return {
         type: Types.ITEM.FETCH.RECIPES_AS_RESULT_FINISHED.type,
         payload: {
             data,
-            itemId: parseInt(itemId)
+            itemId: parseInt(itemId),
+            totalPages
         }
     };
 }

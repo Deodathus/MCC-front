@@ -18,6 +18,10 @@ let preloadedState = {
         elements: {},
         status: Statuses.loading,
         recipes: {
+            pagination: {
+                asIngredient: [],
+                asResult: [],
+            },
             asIngredient: [],
             asResult: []
         },

@@ -15,11 +15,17 @@ function fetchRecipesForItem(itemId) {
     }
 }
 
-function fetchRecipesAsIngredientForItem(itemId) {
+function fetchRecipesAsIngredientForItem(itemId, page, perPage) {
     return async function fetchRecipesAsIngredientForItemThunk(dispatch, getState) {
-        await FetchRecipesAsIngredientForItem(itemId)
+        await FetchRecipesAsIngredientForItem(itemId, page, perPage)
             .then(response => {
-                dispatch(ItemRecipeActionCreator.fetchRecipesAsIngredientForItemFinished(itemId, response.data));
+                dispatch(
+                    ItemRecipeActionCreator.fetchRecipesAsIngredientForItemFinished(
+                        itemId,
+                        response.data,
+                        response.headers['x-total-pages']
+                    )
+                );
             })
             .catch(error => {
                 dispatch(ItemRecipeActionCreator.fetchRecipesForItemError(error));
@@ -27,11 +33,17 @@ function fetchRecipesAsIngredientForItem(itemId) {
     }
 }
 
-function fetchRecipesAsResultForItem(itemId) {
+function fetchRecipesAsResultForItem(itemId, page, perPage) {
     return async function fetchRecipesAsResultForItemThunk(dispatch, getState) {
-        await FetchRecipesAsResultForItem(itemId)
+        await FetchRecipesAsResultForItem(itemId, page, perPage)
             .then(response => {
-                dispatch(ItemRecipeActionCreator.fetchRecipesAsResultForItemFinished(itemId, response.data));
+                dispatch(
+                    ItemRecipeActionCreator.fetchRecipesAsResultForItemFinished(
+                        itemId,
+                        response.data,
+                        response.headers['x-total-pages']
+                    )
+                );
             })
             .catch(error => {
                 dispatch(ItemRecipeActionCreator.fetchRecipesForItemError(error));
@@ -48,7 +60,14 @@ function fetchRecipesAsIngredientForItemFinished(state, action) {
             ...state.recipes,
             asIngredient: {
                 ...state.asIngredient,
-                [itemId]: action.payload.data
+                [itemId]: action.payload.data,
+            },
+            pagination: {
+                ...state.recipes.pagination,
+                asIngredient: {
+                    ...state.recipes.pagination.asIngredient,
+                    [itemId]: parseInt(action.payload.totalPages)
+                }
             }
         }
     };
@@ -63,7 +82,14 @@ function fetchRecipesAsResultForItemFinished(state, action) {
             ...state.recipes,
             asResult: {
                 ...state.asResult,
-                [itemId]: action.payload.data
+                [itemId]: action.payload.data,
+            },
+            pagination: {
+                ...state.recipes.pagination,
+                asResult: {
+                    ...state.recipes.pagination.asResult,
+                    [itemId]: parseInt(action.payload.totalPages)
+                }
             }
         }
     };

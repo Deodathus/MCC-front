@@ -7,10 +7,10 @@ export default function ItemRecipeComponent(props) {
     const onClick = props.onClick;
 
     let ingredients = recipe.ingredients.map(ingredient => {
-        return <RecipeIngredientComponent key={ingredient.id} ingredient={ingredient} />
+        return <RecipeIngredientComponent key={Math.random() + '_' + ingredient.id} ingredient={ingredient} />
     });
     let results = recipe.results.map(result => {
-        return <RecipeResultComponent key={result.id} result={result} />
+        return <RecipeResultComponent key={Math.random() + '_' + result.id} result={result} />
     });
 
     return (
