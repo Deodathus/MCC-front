@@ -6,9 +6,6 @@ export default function ItemRecipesSkeletonComponent() {
             <Box>
                 <Skeleton widht='800px' height='800px' />
             </Box>
-            <Box>
-                <Skeleton widht='800px' height='800px' />
-            </Box>
         </>
     );
 }

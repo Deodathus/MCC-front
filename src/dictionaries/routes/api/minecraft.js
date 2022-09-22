@@ -20,6 +20,8 @@ export default function() {
             fetch: host + 'api/minecraft/item',
             fetchOne: host + 'api/minecraft/item/{id}',
             fetchRecipes: host + 'api/minecraft/item/{id}/recipes',
+            fetchRecipesAsIngredient: host + 'api/minecraft/item/{id}/recipes/asIngredient',
+            fetchRecipesAsResult: host + 'api/minecraft/item/{id}/recipes/asResult',
             store: host + 'api/minecraft/item'
         },
         recipe: {

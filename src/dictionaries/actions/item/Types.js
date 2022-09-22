@@ -25,6 +25,12 @@ const types = {
             },
             RECIPES_ERROR: {
                 type: 'ITEM|FETCH_RECIPES_ERROR'
+            },
+            RECIPES_AS_INGREDIENT_FINISHED: {
+                type: 'ITEM|FETCH_RECIPES_AS_INGREDIENT_FINISHED'
+            },
+            RECIPES_AS_RESULT_FINISHED: {
+                type: 'ITEM|FETCH_RECIPES_AS_RESULT_FINISHED'
             }
         },
         STORE: {

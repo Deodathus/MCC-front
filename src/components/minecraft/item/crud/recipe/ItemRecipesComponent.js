@@ -9,24 +9,43 @@ export default function ItemRecipesComponent(props) {
     const dispatch = useDispatch();
     const itemId = props.itemId;
 
-    const itemRecipes = useSelector(state => {
-        return Object.values(state.items.recipes).find(recipes => recipes.itemId === parseInt(itemId));
+    const itemRecipesAsIngredients = useSelector(state => {
+        return state.items.recipes.asIngredient[itemId]
     });
 
-    if (!itemRecipes) {
-        dispatch(ItemRecipeReducer.fetchRecipesForItem(itemId));
+    const itemRecipesAsResult = useSelector(state => {
+        return state.items.recipes.asResult[itemId];
+    });
+
+    if (!itemRecipesAsIngredients && !itemRecipesAsResult) {
+        dispatch(ItemRecipeReducer.fetchRecipesAsIngredientForItem(itemId));
+        dispatch(ItemRecipeReducer.fetchRecipesAsResultForItem(itemId));
 
         return (
             <>
                 <ItemRecipesSkeletonComponent />
             </>
         );
+    } else if (itemRecipesAsIngredients && !itemRecipesAsResult) {
+        return (
+            <>
+                <ItemAsIngredientListComponent recipes={itemRecipesAsIngredients} />
+                <ItemRecipesSkeletonComponent />
+            </>
+        );
+    } else if (itemRecipesAsResult && !itemRecipesAsIngredients) {
+        return (
+            <>
+                <ItemRecipesSkeletonComponent />
+                <ItemAsResultListComponent recipes={itemRecipesAsResult} />
+            </>
+        );
     }
 
     return (
         <>
-            <ItemAsIngredientListComponent recipes={itemRecipes.recipes.asIngredient} />
-            <ItemAsResultListComponent recipes={itemRecipes.recipes.asResult} />
+            <ItemAsIngredientListComponent recipes={itemRecipesAsIngredients} />
+            <ItemAsResultListComponent recipes={itemRecipesAsResult} />
         </>
     );
 }

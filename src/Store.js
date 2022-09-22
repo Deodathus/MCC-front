@@ -17,7 +17,10 @@ let preloadedState = {
     items: {
         elements: {},
         status: Statuses.loading,
-        recipes: {},
+        recipes: {
+            asIngredient: [],
+            asResult: []
+        },
         pagination: {},
         process: {
             storeOne: {

@@ -7,6 +7,26 @@ function fetchRecipesForItemFinished(data) {
     };
 }
 
+function fetchRecipesAsIngredientForItemFinished(itemId, data) {
+    return {
+        type: Types.ITEM.FETCH.RECIPES_AS_INGREDIENT_FINISHED.type,
+        payload: {
+            data,
+            itemId: parseInt(itemId)
+        }
+    }
+}
+
+function fetchRecipesAsResultForItemFinished(itemId, data) {
+    return {
+        type: Types.ITEM.FETCH.RECIPES_AS_RESULT_FINISHED.type,
+        payload: {
+            data,
+            itemId: parseInt(itemId)
+        }
+    };
+}
+
 function fetchRecipesForItemError(error) {
     return {
         type: Types.ITEM.FETCH.RECIPES_ERROR.type,
@@ -17,5 +37,7 @@ function fetchRecipesForItemError(error) {
 
 export default {
     fetchRecipesForItemFinished,
+    fetchRecipesAsIngredientForItemFinished,
+    fetchRecipesAsResultForItemFinished,
     fetchRecipesForItemError
 }

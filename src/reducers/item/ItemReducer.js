@@ -14,6 +14,10 @@ export default function ItemReducer(state = [], action) {
             return CrudItemReducer.fetchOneFinished(state, action);
         case Types.ITEM.FETCH.RECIPES_FINISHED.type:
             return ItemRecipeReducer.fetchRecipesForItemFinished(state, action);
+        case Types.ITEM.FETCH.RECIPES_AS_INGREDIENT_FINISHED.type:
+            return ItemRecipeReducer.fetchRecipesAsIngredientForItemFinished(state, action);
+        case Types.ITEM.FETCH.RECIPES_AS_RESULT_FINISHED.type:
+            return ItemRecipeReducer.fetchRecipesAsResultForItemFinished(state, action);
         case Types.ITEM.STORE.ONE.type:
             return CrudItemReducer.storeItem(state, action);
         case Types.ITEM.STORE.SUCCESS.type:
