@@ -6,6 +6,6 @@ export default function() {
         case Environment.DEV.value:
             return 'http://localhost:8080';
         case Environment.PROD.value:
-            return 'http://lil-develo.com'
+            return 'https://lil-develo.com'
     }
 }
