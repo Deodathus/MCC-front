@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
     node:
-        container_name: organizer-front
+        container_name: organizer-mcc-front
         build:
             context: .
         ports:
@@ -13,8 +13,8 @@ services:
             - NODE_ENV=development
             - CHOKIDAR_USEPOLLING=true
         networks:
-            -   organizer_network
+            -   organizer_organizer_network
 
 networks:
-    organizer_network:
-        driver: bridge
+    organizer_organizer_network:
+        external: true
